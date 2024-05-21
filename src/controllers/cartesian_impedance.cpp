@@ -99,7 +99,8 @@ franka::Torques CartesianImpedance::step(const franka::RobotState &robot_state,
                        (nullspace_stiffness_ * (q_nullspace_d - q) -
                         (2.0 * sqrt(nullspace_stiffness_)) * dq);
   // Desired torque
-  tau_d << tau_task + tau_nullspace + coriolis;
+  // tau_d << tau_task + tau_nullspace + coriolis;
+  tau_d << tau_task + coriolis;
 
   franka::Torques torques = VectorToArray<7>(tau_d);
   torques.motion_finished = motion_finished_;
